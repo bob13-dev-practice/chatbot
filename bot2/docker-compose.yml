@@ -1,0 +1,28 @@
+version: "3.8"
+
+services:
+  mariadb:
+    container_name: maria-db
+    image: mariadb
+    ports:
+      - 3307:3306
+    volumes:
+      - bobip-mariadb-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+
+  # api:
+  #   image: allmnet/my:bob13_api
+  #   ports:
+  #     - 443:8080
+  #   environment:
+  #     DB_PASSWORD: password
+  #     LOG_LVL: debug
+  #     PYTHONUNBUFFERED: 1
+  #   depends_on:
+  #     - mariadb
+  #   command:
+  #     sh -c "/opt/api/start.sh”
+
+volumes:
+  bobip-mariadb-data:
