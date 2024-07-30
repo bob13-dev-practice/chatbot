@@ -14,3 +14,14 @@ class User(Base):
     __tablename__ = 'user'
 
     id = Column(String, primary_key=True)
+
+class IoC(Base):
+    __tablename__ = "ioc"
+
+    id = Column(BigInteger, primary_key=True)
+    ioc = Column(String)
+    type = Column(String)
+    status = Column(String)
+    description = Column(String)
+    reported_date = Column(DateTime)
+    source = Column(String)

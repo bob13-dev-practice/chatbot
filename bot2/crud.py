@@ -20,12 +20,14 @@ def write_access_data_in_db(access_item: AccessData, db: Session):
 
     return access_table
 
-def check_user_in_db(user_id: str, db: Session):
-    try:
-        user = db.query(User).filter(User.id == user_id).first()
-        if user:
-            return user
-        else:
-            return None
-    except Exception as e:
-        return {error: str(e), 'msg': '존재하지 않는 유저입니다.'}
+
+def check_user_in_db(user_id: str, db: Session) -> Optional[User]:
+    user = db.query(User).filter(User.id == user_id).first()
+    return user
+
+
+def get_ioc_in_db(db: Session) -> Optional[IoCData]:
+    iocs = db.query(IoC).filter().all()
+    if iocs:
+        return [IoCData.model_validate(ioc) for ioc in iocs]
+    return None

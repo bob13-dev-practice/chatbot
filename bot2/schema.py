@@ -10,3 +10,16 @@ class AccessData(BaseModel):
 
     class Config:
         orm_mode = True  # ORM 모델과의 호환성을 위해 설정
+
+class IoCData(BaseModel):
+    ioc: str
+    type: str
+    status: str
+    status: str
+    description: Optional[str] = None
+    reported_date: datetime
+    source: Optional[str] = None
+
+    class Config:
+        orm_mode = True  # ORM 모델과의 호환성을 위해 설정
+        from_attributes = True
