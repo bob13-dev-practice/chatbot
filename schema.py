@@ -12,13 +12,19 @@ class AccessData(BaseModel):
         orm_mode = True  # ORM 모델과의 호환성을 위해 설정
 
 class IoCData(BaseModel):
-    ioc: str
-    type: str
-    status: str
-    status: str
-    description: Optional[str] = None
-    reported_date: datetime
-    source: Optional[str] = None
+    ioc_item: Optional[str] = None
+    ioc_type: Optional[str] = None
+
+    class Config:
+        orm_mode = True  # ORM 모델과의 호환성을 위해 설정
+        # from_attributes = True
+
+class BobWikiData(BaseModel):
+    id: int
+    user_name: str
+    age: Optional[int] = None
+    hometown: Optional[str] = None
+    contents: Optional[str] = None
 
     class Config:
         orm_mode = True  # ORM 모델과의 호환성을 위해 설정

@@ -1,4 +1,4 @@
-from sqlalchemy import Column, BigInteger, String, DateTime
+from sqlalchemy import Column, BigInteger, String, DateTime, Integer, Text
 from database import Base
 
 class Access_Table(Base):
@@ -15,13 +15,11 @@ class User(Base):
 
     id = Column(String, primary_key=True)
 
-class IoC(Base):
-    __tablename__ = "ioc"
+class Bob_Wiki(Base):
+    __tablename__ = 'bob_wiki'
 
-    id = Column(BigInteger, primary_key=True)
-    ioc = Column(String)
-    type = Column(String)
-    status = Column(String)
-    description = Column(String)
-    reported_date = Column(DateTime)
-    source = Column(String)
+    id = Column(BigInteger, primary_key=True, autoincrement=True)
+    user_name= Column(String)
+    age = Column(Integer)
+    hometown = Column(String)
+    contents = Column(Text)

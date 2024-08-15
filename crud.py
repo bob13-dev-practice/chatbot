@@ -1,7 +1,5 @@
-import hashlib
-import json
 from logging import error
-# import requests
+from typing import List, Optional
 from sqlalchemy.orm import Session
 
 from models import *
@@ -20,14 +18,12 @@ def write_access_data_in_db(access_item: AccessData, db: Session):
 
     return access_table
 
-
 def check_user_in_db(user_id: str, db: Session) -> Optional[User]:
     user = db.query(User).filter(User.id == user_id).first()
     return user
 
-
-def get_ioc_in_db(db: Session) -> Optional[IoCData]:
-    iocs = db.query(IoC).filter().all()
-    if iocs:
-        return [IoCData.model_validate(ioc) for ioc in iocs]
+def get_bob_wiki_in_db(db: Session) -> Optional[List[BobWikiData]]:
+    bob_wiki_list = db.query(Bob_Wiki).filter().all()
+    if bob_wiki_list:
+        return [BobWikiData.model_validate(bob_wiki) for bob_wiki in bob_wiki_list]
     return None
